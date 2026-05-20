@@ -4,7 +4,7 @@
 
 ### Built and maintained by [Skydraex](https://github.com/Skydraex)
 
-<img src="https://github.com/user-attachments/assets/e54c624d-0974-422a-994e-fd55091be051" width="460" alt="Baghound — feature overview">
+<img src="https://github.com/user-attachments/assets/94725fcb-5912-44e0-825b-e13926e64cc5" width="460" alt="Baghound — feature overview">
 
 </div>
 
@@ -230,7 +230,7 @@ spot, no restart needed.
 The **DPS Logger** is a full damage breakdown for every boss you fight — live
 as it happens, and saved afterwards.
 
-![DPS Logger](https://github.com/user-attachments/assets/e5555845-b5fe-4cf6-8874-3d8e46999ed6)
+![DPS Logger](https://github.com/user-attachments/assets/ee2e9bfd-0969-43fe-95a1-2aaded2648ac)
 
 - **Live leaderboard** — every player in the fight ranked by DPS, with total
   damage dealt and their share of the boss's HP.
@@ -248,12 +248,28 @@ the whole picture of a run, per player, in one table.
 
 ---
 
+## Chat log
+
+The **Chat** tab is a unified chat window for every message Baghound sees in
+the game — public, party, guild and PMs — all in one scrollable feed.
+
+![Chat log](https://github.com/user-attachments/assets/961e2cfb-1f3a-4682-bcc0-4e7b79d0e198)
+
+- **Channel filters** — toggle Guild / Party / PM / Public on the right to
+  narrow the feed to just the conversations you care about.
+- **Clear Chat** — a button at the top of the panel wipes the visible log to
+  start a fresh slate.
+- **Read-only** — Baghound can only see chat; it never sends messages. As with
+  the rest of the sniffer, no packet injection.
+
+---
+
 ## Statistics
 
 The **Statistics** tab turns your tracked play into readable history.
 
-![Dungeon Stats](https://github.com/user-attachments/assets/95dc7ede-9765-44f5-b625-6d40d10c645a)
-![Fame graph](https://github.com/user-attachments/assets/a6180b52-5689-4bff-9aeb-93638819f950)
+![Dungeon Stats](https://github.com/user-attachments/assets/8a7b5d83-757b-4427-a619-5357b1373b42)
+![Fame graph](https://github.com/user-attachments/assets/0bf61648-f321-4485-a06a-937ea1591359)
 
 - **Fame Graph** — your fame over time as an area chart, with 7-day, 30-day,
   90-day and all-time ranges, plus headline tiles for fame gained, best day,
@@ -272,7 +288,7 @@ The **Statistics** tab turns your tracked play into readable history.
 
 ## Collection log
 
-![Collection log](https://github.com/user-attachments/assets/21fdda21-51fa-4145-b5fa-53d6b4b33a43)
+![Collection log](https://github.com/user-attachments/assets/10cfba56-e65a-4d7d-9f06-46ef01b5065b)
 
 The **Collection** tab keeps a permanent record of every notable ("top") item
 the sniffer has seen drop — across every session, stored locally so it
@@ -299,7 +315,7 @@ counts (see [What posts to Discord](#what-posts-to-discord)).
 
 ## Loot drops to Discord
 
-![Discord webhooks](https://github.com/user-attachments/assets/965dbea1-dd09-4e25-8628-02b8b8652e2b)
+![Discord webhooks](https://github.com/user-attachments/assets/2c573562-6b7b-45c7-bfb5-edff39283668)
 
 Baghound posts your best loot drops to a Discord channel as a clean,
 ROTMG-styled image card. It is read-only and per-user — nothing posts until
@@ -322,7 +338,7 @@ it, not its filler. (Sprite Wand is excluded by name.)
 
 ### What each card shows
 
-<img src="https://github.com/user-attachments/assets/6be7fecb-43b5-424a-8def-3f2df8160035" width="440" alt="Discord loot card">
+<img src="https://github.com/user-attachments/assets/c5b38075-737d-45ed-a1ff-417f34f1e189" width="440" alt="Discord loot card">
 
 Each posted drop becomes one image card with a row per item. Every row shows:
 
@@ -401,7 +417,7 @@ skipped.
 
 ## Settings
 
-![Settings](https://github.com/user-attachments/assets/3aa1b6f2-a942-457a-abac-070312be8f39)
+![Settings](https://github.com/user-attachments/assets/f8f8ff57-9095-4da7-9457-6a9250a60b97)
 
 The **Settings** tab gathers every option in one place:
 
@@ -468,6 +484,61 @@ An older build keeps working indefinitely.
 | The `.exe` won't launch after swapping in a new JAR | Don't hand-swap files — download a fresh `Baghound-windows.zip` and use that whole folder. |
 | Multiple ROTMG clients open | Not supported by upstream RealmShark — only one client at a time. |
 | Anything else | Open an [issue](https://github.com/Skydraex/ROTMG-packet-sniffer/issues) with what you tried, what happened, and the build id shown in the status bar. For a tracking bug (loot, collection, fame), also attach the debug logs from `%USERPROFILE%\.rotmg-sniffer\debug\`. **Grab them right after you stop the sniffer** — each new session (starting the sniffer again, or relaunching Baghound) wipes the logs fresh, so collecting them after a restart gives an empty file. |
+
+---
+
+## What this build adds
+
+Upstream RealmShark/Tomato does all the core work — DPS tracking, loot
+detection, chat, quests, asset extraction, packet parsing. Baghound keeps all
+of it and adds the following.
+
+**1. Stability & crash fixes.** The headline fix is a patch to the
+upstream packet sniffer. Upstream has two compounding concurrency bugs:
+
+1. **Lost-wakeup race** — the producer's `notifyAll()` can fire in the window
+   between the consumer's drain and its next `wait()`, leaving the consumer
+   blocked forever.
+2. **Incorrect hand-rolled ring buffer** — wrap-around state desyncs, the
+   resize path can leak the read pointer past unread data, and `isEmpty()`
+   can return `true` while data sits in the buffer.
+
+Either bug alone produces the "capture stops after ~30s" symptom; together
+they make it virtually certain on long sessions. Both are replaced with a
+`java.util.concurrent.LinkedBlockingQueue` and a `CountDownLatch`. The build
+also hardens the packet pipeline against desync-driven crashes (guarded asset
+loading, packet-constructor recovery, out-of-memory containment).
+
+**2. Pixel-art UI redesign** — every screen rebuilt in Baghound's own retro
+style, with five live-switchable themes (Dark, Light, Midnight, Ember, Purp)
+and a drag-to-reorder tab bar.
+
+**3. DPS logger — detailed combat log** — on top of upstream's per-player
+damage tracking, Baghound records each player's damage taken, shows the HP%
+players nexus at, keeps a persistent per-boss history of past runs, and
+exports any leaderboard as text or an image card.
+
+**4. Statistics tab** — a per-character fame-over-time graph with selectable
+ranges, a per-day fame table, and a Dungeon Stats screen that ranks and
+features your most-run dungeons with their boss sprites.
+
+**5. Collection log** — a persistent, cross-session record of notable drops:
+a lit/dim grid, a live "still-owned" view with automatic dismantle / death /
+loss detection and vault-backed self-correction, a dated log, and shareable
+text / image export.
+
+**6. Loot drops to Discord** — the "tops" filter and the rendered loot card,
+postable to any number of channels.
+
+**7. RealmShark bot bridge** — guild loot bridging (the Bridge Review / Bridge
+Logs tabs), ported from the PPETomato build.
+
+**8. In-app updates** — a background update check and a no-pop-up, status-bar
+self-update.
+
+**9. Automated builds & releases** — CI builds the Windows `.exe`, publishes a
+rolling `latest` release plus a permanent per-version archive, and merges
+upstream weekly.
 
 ---
 
