@@ -4,7 +4,7 @@
 
 ### Built and maintained by [Skydraex](https://github.com/Skydraex)
 
-<img src="https://github.com/user-attachments/assets/c0c02c99-bb0a-414d-bf03-8befbbe51a58" width="460" alt="Baghound — feature overview">
+<img width="1080" height="1920" alt="Image" src="https://github.com/user-attachments/assets/e6c37ad4-a8ea-4794-8c2f-8eda3aaf53ca" />
 
 </div>
 
