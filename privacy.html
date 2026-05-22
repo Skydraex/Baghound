@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baghound — Privacy Policy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #f9f9f7;
+      padding: 2rem 1rem 4rem;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #e4e4e0;
+      border-radius: 8px;
+      padding: 2.5rem 3rem;
+    }
+
+    header {
+      border-bottom: 1px solid #e4e4e0;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #111;
+    }
+
+    header p {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #111;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p { margin-bottom: 0.8rem; }
+
+    ul {
+      padding-left: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    ul li { margin-bottom: 0.35rem; }
+
+    a { color: #1a6fbf; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .not-collected {
+      background: #f4f8ff;
+      border-left: 3px solid #1a6fbf;
+      padding: 0.75rem 1rem;
+      border-radius: 0 4px 4px 0;
+      margin: 0.8rem 0;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #e4e4e0;
+      font-size: 0.85rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Baghound — Privacy Policy</h1>
+      <p>Last updated: 22 May 2026</p>
+    </header>
+
+    <p>
+      This privacy policy explains what data Baghound collects, why, and how it is handled.
+      Baghound is a desktop application for tracking gameplay statistics in Realm of the Mad God.
+    </p>
+
+    <h2>Who runs Baghound</h2>
+    <p>
+      Baghound is an independently operated desktop application. If you have any questions about
+      this policy, reach out via the
+      <a href="https://discord.gg/BD8FFnhdve" target="_blank" rel="noopener">Baghound Discord server</a>.
+    </p>
+
+    <h2>What data we collect</h2>
+    <p>Baghound collects the minimum data needed to operate the subscription system:</p>
+    <ul>
+      <li>
+        <strong>Your email address</strong> — collected when you start a trial or subscribe.
+        Used as your unique identifier to track your trial start date, verify your subscription,
+        and prevent duplicate trials when you reinstall.
+      </li>
+      <li>
+        <strong>Subscription status</strong> — whether your subscription is active, cancelled,
+        or on trial. Provided by Stripe.
+      </li>
+      <li>
+        <strong>A rotating session token</strong> — a random identifier that lets us prevent
+        account sharing. Contains no personal information.
+      </li>
+    </ul>
+
+    <div class="not-collected">
+      <p>We do <strong>not</strong> collect:</p>
+      <ul>
+        <li>Your name, address, phone number, or any other personal information</li>
+        <li>
+          Your in-game character data or gameplay statistics
+          (these are stored locally on your own device only)
+        </li>
+        <li>IP addresses, browser fingerprints, or device identifiers</li>
+        <li>Cookies or web tracking data</li>
+      </ul>
+    </div>
+
+    <h2>Payment data</h2>
+    <p>
+      All payment processing is handled by <strong>Stripe</strong>. We never see, receive, or
+      store your card details. Stripe is a PCI-compliant payment processor and operates under its
+      own privacy policy: <a href="https://stripe.com/privacy" target="_blank" rel="noopener">stripe.com/privacy</a>.
+    </p>
+    <p>When you subscribe, Stripe shares with us only:</p>
+    <ul>
+      <li>The email address you used at checkout</li>
+      <li>The status of your subscription (active / cancelled / payment failed)</li>
+      <li>A Stripe customer ID used to look up your subscription</li>
+    </ul>
+
+    <h2>Where your data is stored</h2>
+    <ul>
+      <li>
+        <strong>Email + subscription status:</strong> stored in a Cloudflare D1 database
+        (region: automatically selected by Cloudflare, typically EU/UK for European users)
+      </li>
+      <li><strong>Payment data:</strong> stored by Stripe, not by us</li>
+      <li>
+        <strong>Gameplay data:</strong> stored locally on your own device,
+        never uploaded anywhere
+      </li>
+    </ul>
+
+    <h2>How long we keep your data</h2>
+    <ul>
+      <li><strong>Active subscribers and trial users:</strong> for the duration of your account</li>
+      <li>
+        <strong>Cancelled subscribers:</strong> retained for 12 months after cancellation in case
+        of refund disputes, then deleted
+      </li>
+      <li>
+        <strong>Stripe payment records:</strong> retained by Stripe according to their policy
+        (typically 7 years for tax purposes)
+      </li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>Under UK GDPR you have the right to:</p>
+    <ul>
+      <li><strong>Access</strong> — request a copy of the data we hold about you</li>
+      <li>
+        <strong>Deletion</strong> — request that we delete your data
+        (this will also cancel any active subscription)
+      </li>
+      <li><strong>Correction</strong> — request correction of any inaccurate data</li>
+      <li><strong>Portability</strong> — request your data in a machine-readable format</li>
+      <li><strong>Objection</strong> — object to how we process your data</li>
+    </ul>
+    <p>
+      To exercise any of these rights, contact us via the
+      <a href="https://discord.gg/BD8FFnhdve" target="_blank" rel="noopener">Baghound Discord server</a>.
+      We will respond within 30 days.
+    </p>
+
+    <h2>Third parties we use</h2>
+    <ul>
+      <li>
+        <strong>Stripe</strong> — payment processing
+        (<a href="https://stripe.com/privacy" target="_blank" rel="noopener">stripe.com/privacy</a>)
+      </li>
+      <li>
+        <strong>Cloudflare</strong> — hosts our subscription verification system
+        (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>)
+      </li>
+      <li>
+        <strong>GitHub</strong> — hosts the app download and release files
+        (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>)
+      </li>
+    </ul>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      If this policy changes, the updated version will be published on this page and the date at
+      the top updated. Material changes will be announced in the Baghound Discord.
+    </p>
+
+    <h2>Complaints</h2>
+    <p>
+      If you believe your data has been mishandled, you have the right to complain to the UK
+      Information Commissioner's Office:
+      <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.
+    </p>
+
+    <footer>
+      &copy; 2026 Baghound. All rights reserved.
+    </footer>
+  </main>
+</body>
+</html>
