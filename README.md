@@ -310,6 +310,26 @@ counts (see [What posts to Discord](#what-posts-to-discord)).
   shiny and its normal version share the same name.
 - **Copy as text / Copy as image** — export your collection to share; the
   export follows whichever grid filter (All / Shiny / Normal) is selected.
+- **Skin history** — your character skin history auto-imports on first
+  launch, so the grid isn't blank when you start. Pet skins are honour-based
+  (added by hand) since they aren't publicly listed anywhere.
+
+---
+
+## Your profile on baghound.app
+
+Sign into [**baghound.app**](https://baghound.app) and the sniffer syncs your
+collection, characters, DPS history, fame and dungeon stats to a shareable
+profile page. Friends and guildmates can view your collection grid, fame
+graph and past dungeon runs without you sending screenshots around.
+
+- **Free** accounts get a **2-week Pro trial** on signup — full access to
+  everything while you try it out.
+- After the trial you keep a free tier (your profile stays public, recent
+  runs and a count-only collection summary remain visible); Pro unlocks
+  the full DPS history, collection grid, fame breakdowns and more.
+- Account linking is via the sniffer's **License** tab — there is no
+  separate password to manage.
 
 ---
 
@@ -442,12 +462,12 @@ automatically:
   API on every launch; no restart needed.
 - **New features from upstream RealmShark/Tomato** — a scheduled job merges
   them in every week, and a fresh build is published automatically.
-- **New builds of Baghound itself** — Baghound checks for a newer release in
-  the background. When one is found, the status-bar button turns into a gold
-  **Update Available**; click it for an inline **Update Now / Later** choice.
-  **Update Now** downloads the new build, swaps itself in and restarts. No
-  pop-ups interrupt you, and your settings and collection log carry over
-  automatically.
+- **New builds of Baghound itself** — Baghound checks for a newer release on
+  every launch and installs it automatically before the main window opens.
+  You'll briefly see an "Updating…" message during loading, then the app
+  reopens on the new version with your settings and collection log carried
+  over. If you stay running through a release, the status-bar button also
+  flags a mid-session update you can install with one click.
 
 You can also update by hand at any time — just re-download
 `Baghound-windows.zip` from the
@@ -470,6 +490,15 @@ If a new build ever misbehaves, you can roll back: open the
 [Releases page](https://github.com/Skydraex/ROTMG-packet-sniffer/releases),
 pick an earlier `vX.Y.Z` release, and download its `Baghound-windows.zip`.
 An older build keeps working indefinitely.
+
+---
+
+## Community & support
+
+Questions, bug reports, feature requests, or just want to follow development?
+[**Join the Baghound Discord**](https://discord.gg/BD8FFnhdve) — support
+tickets, release announcements, and a place to share builds with other
+players. For bugs you can also open an [issue on GitHub](https://github.com/Skydraex/Baghound/issues).
 
 ---
 
@@ -533,8 +562,8 @@ postable to any number of channels.
 **7. RealmShark bot bridge** — guild loot bridging (the Bridge Review / Bridge
 Logs tabs), ported from the PPETomato build.
 
-**8. In-app updates** — a background update check and a no-pop-up, status-bar
-self-update.
+**8. In-app updates** — silent auto-update on every launch, plus a no-pop-up,
+status-bar self-update for mid-session releases.
 
 **9. Automated builds & releases** — CI builds the Windows `.exe`, publishes a
 rolling `latest` release plus a permanent per-version archive, and merges
@@ -557,8 +586,12 @@ the **PPETomato** build, a RealmShark variant that adds guild loot bridging.
 
 Everything original to Baghound — the stability and crash-hardening patches,
 the pixel-art interface and themes, the DPS logger, the Statistics tab, the
-collection log, the Discord loot webhook, the in-app updater, and the
-build / CI / upstream-sync automation — is the work of **Skydraex**.
+collection log, the Discord loot webhook, the in-app updater, the build / CI /
+upstream-sync automation, and the [**baghound.app**](https://baghound.app)
+companion website with its Cloudflare Workers backend — is © **Skydraex**, all
+rights reserved. Baghound builds on RealmShark and Tomato, which are
+MIT-licensed (see [`LICENSE.md`](LICENSE.md)) — that licence is kept intact and
+the upstream attribution is preserved in full as the MIT terms require.
 
 **Baghound itself is proprietary.** The compiled application distributed from
 this repository's Releases is licensed under the terms in [`LICENSE.md`](LICENSE.md):
