@@ -590,8 +590,9 @@ collection log, the Discord loot webhook, the in-app updater, the build / CI /
 upstream-sync automation, and the [**baghound.app**](https://baghound.app)
 companion website with its Cloudflare Workers backend — is © **Skydraex**, all
 rights reserved. Baghound builds on RealmShark and Tomato, which are
-MIT-licensed (see [`LICENSE.md`](LICENSE.md)) — that licence is kept intact and
-the upstream attribution is preserved in full as the MIT terms require.
+MIT-licensed (see [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)) — that
+licence is kept intact and the upstream attribution is preserved in full as
+the MIT terms require.
 
 **Baghound itself is proprietary.** The compiled application distributed from
 this repository's Releases is licensed under the terms in [`LICENSE.md`](LICENSE.md):
